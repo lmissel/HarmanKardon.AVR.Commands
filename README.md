@@ -1,10 +1,11 @@
 # HarmanKardon.AVR.Commands
-Dieses PowerShell Module wurde mit dem Ziel erstellt, einen Harman Kardon AVR Controller 171S fernzusteuern. Dabei wird die API des AVR Controllers angesprochen.
+Dieses PowerShell Module wurde mit dem Ziel erstellt, einen Harman Kardon AVR Controller 171S fernzusteuern und in meine SmartHome Umgebung zu integrieren. 
 
+Der AVR Controller von Harman Kardon liefert Netzwerkfunktionen für AirPlay, Spotify und eine App-Steuerung 'HK Remote' für Android oder iOS. Für meine SmartHome Umgebung wollte ich aber ganze Sequenzen abbilden, was man leider nicht so einfach darstellen konnte. Beispielsweise sollte, sobald ich nach Hause komme, der AVR Controller angehen und Spotify meine Lieblingslieder abspielen. So kam es, dass ich mir den Traffic der HK Remote von meinem iPhone anschaute und das Ergebnis ist hier zu sehen...
 
 ## Beispiel
 ````PowerShell
-# Modul laden
+# Module laden
 Import-Module HarmanKardon.AVR.Commands
 
 # Anschalten
