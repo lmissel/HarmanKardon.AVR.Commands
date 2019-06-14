@@ -18,17 +18,33 @@ function Invoke-HKAVRCommand
     [Alias()]
     Param
     (
-        [Parameter(Mandatory=$true,
-                   ValueFromPipelineByPropertyName=$true,
-                   Position=0)]
+        [Parameter( Mandatory=$true,
+                    ValueFromPipelineByPropertyName=$true,
+                    Position=0)]
+        [ValidateNotNullOrEmpty()]
         [String] $HostName,
 
+        [Parameter( Mandatory=$false,
+                    ValueFromPipelineByPropertyName=$true,
+                    Position=1)]
         [int] $Port = 10025,
 
+        [Parameter( Mandatory=$true,
+                    ValueFromPipelineByPropertyName=$true,
+                    Position=2)]
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('power-on', 'power-off', 'ok', 'volume-down', 'volume-up', 'up', 'sleep', 'source-selection', 'right', 'reverse', 'previous', 'play', 'pause', 'options', 'next', 'mute-toggle', 'left', 'info', 'home', 'heart-alive', 'forward', 'down', 'back')]
         [String] $Command,
 
+        [Parameter( Mandatory=$true,
+                    ValueFromPipelineByPropertyName=$true,
+                    Position=3)]
+        [ValidateSet('Main Zone', 'Zone 2')]
         [String] $Zone,
 
+        [Parameter( Mandatory=$false,
+                    ValueFromPipelineByPropertyName=$true,
+                    Position=4)]
         [String] $Parameter
     )
 
