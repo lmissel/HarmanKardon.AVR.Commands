@@ -53,17 +53,18 @@ function Invoke-HKAVRCommand
         $Script:TcpClient = [System.Net.Sockets.TcpClient]::new($HostName, $Port)
         $Script:TcpClient.ReceiveTimeout = 100
 
+        [XML] $XML = Get-Content -Path .\avr.xml
+        $XML.harman.avr.common.control.name = $Command
+        $XML.harman.avr.common.control.zone = $Zone
+        $XML.harman.avr.common.control.param = $Parameter
+
         #Request erstellen
-        [string] $xmlVersion = 'version="1.0" encoding="UTF-8"'
-        [string] $Script:Request = ""
-        [string] $payload = "<?xml " + $xmlVersion + "?><harman><avr><common><control><name>" + $Command + "</name><zone>" + $Zone + "</zone><para>" + $Parameter + "</param></control></common></avr></harman>";
-        $Script:Request += "POST AVR HTTP/1.1\r\n";
+	[string] $Script:Request = "POST AVR HTTP/1.1\r\n";
         $Script:Request += "Host: " + $HostName + ":" + $Port + "\r\n";
         $Script:Request += "User-Agent: Harman Kardon AVR Controller/1.0\r\n";
-        $Script:Request += "Content-Length: " + $payload.Length + "\r\n";
+        $Script:Request += "Content-Length: " + $XML.InnerXml.Length + "\r\n";
         $Script:Request += "\r\n";
-        $Script:Request += $payload;
-
+        $Script:Request += $XML.InnerXml;
     }
     Process
     {
