@@ -59,7 +59,7 @@ function Invoke-HKAVRCommand
         $XML.harman.avr.common.control.param = $Parameter
 
         #Request erstellen
-	[string] $Script:Request = "POST AVR HTTP/1.1\r\n";
+	    [string] $Script:Request = "POST AVR HTTP/1.1\r\n";
         $Script:Request += "Host: " + $HostName + ":" + $Port + "\r\n";
         $Script:Request += "User-Agent: Harman Kardon AVR Controller/1.0\r\n";
         $Script:Request += "Content-Length: " + $XML.InnerXml.Length + "\r\n";
