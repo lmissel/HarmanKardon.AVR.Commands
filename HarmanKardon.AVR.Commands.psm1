@@ -50,41 +50,39 @@ function Invoke-HKAVRCommand
 
     Begin
     {
-        $Script:TcpClient = [System.Net.Sockets.TcpClient]::new($HostName, $Port)
-        $Script:TcpClient.ReceiveTimeout = 100
-
-        [XML] $XML = Get-Content -Path .\avr.xml
+        [XML] $XML = Get-Content -Path $($PSScriptRoot + '\avr.xml')
         $XML.harman.avr.common.control.name = $Command
         $XML.harman.avr.common.control.zone = $Zone
         $XML.harman.avr.common.control.param = $Parameter
 
         #Request erstellen
-	    [string] $Script:Request = "POST AVR HTTP/1.1\r\n";
-        $Script:Request += "Host: " + $HostName + ":" + $Port + "\r\n";
-        $Script:Request += "User-Agent: Harman Kardon AVR Controller/1.0\r\n";
-        $Script:Request += "Content-Length: " + $XML.InnerXml.Length + "\r\n";
-        $Script:Request += "\r\n";
-        $Script:Request += $XML.InnerXml;
+	    [string] $Request = "POST AVR HTTP/1.1\r\n";
+        $Request += "Host: " + $HostName + ":" + $Port + "\r\n";
+        $Request += "User-Agent: Harman Kardon AVR Controller /1.0\r\n";
+        $Request += "Content-Length: " + $XML.InnerXml.Length + "\r\n";
+        $Request += "\r\n";
+        $Request += $XML.InnerXml;
     }
     Process
     {
         try
         {
-            [Byte[]] $data = [System.Text.Encoding]::ASCII.GetBytes($Script:Request) 
-            [System.Net.Sockets.NetworkStream] $NetworkStream = $Script:TcpClient.GetStream()
+            $TcpClient = [System.Net.Sockets.TcpClient]::new($HostName, $Port)
+            $TcpClient.ReceiveTimeout = 100
+
+            [Byte[]] $data = [System.Text.Encoding]::ASCII.GetBytes($Request) 
+            [System.Net.Sockets.NetworkStream] $NetworkStream = $TcpClient.GetStream()
             $NetworkStream.Write($data, 0, $data.Length)
+
+            $NetworkStream.Close()
+            $TcpClient.Close()
         }
         catch [System.Exception]
         {
             throw
         }
-        finally
-        {
-            $NetworkStream.Close()
-        }
     }
     End
-    {
-        $Script:TcpClient.Close()
+    {        
     }
 }
