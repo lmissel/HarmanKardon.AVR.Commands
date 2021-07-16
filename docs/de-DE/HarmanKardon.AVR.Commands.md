@@ -1,4 +1,4 @@
-﻿---
+---
 Module Name: HarmanKardon.AVR.Commands
 Module Guid: cde59d5f-e956-4a93-93ce-b0f862a53aab
 Download Help Link: {{ Update Download Link }}
