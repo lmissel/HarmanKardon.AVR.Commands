@@ -39,8 +39,8 @@ Invoke-HKAVRCommand -HostName 172.16.15.123 -Port 10025 -Command "volume-up" -Zo
 |---|---|
 |Power-On|As soon as the device is in *standby mode* for a longer time, the device cannot be switched on with the command `Invoke-HKAVRCommand -HostName 172.16.15.123 -Port 10025 -Command "power-on" -Zone "Main Zone"`.|
 
->[!Note]
->Support for the module is limited. Please report issues in the source code repository via the Feedback section using the link on this page.
+## Notes
+Support for the module is limited. Please report issues in the source code repository via the Feedback section using the link on this page.
 
 ## Feedback
 Submit and view feedback for [this module](https://github.com/lmissel/HarmanKardon.AVR.Commands/issues/new).

@@ -1,18 +1,4 @@
-﻿<#
-.Synopsis
-    Stellt eine Verbindung zum Harman Kardon AVR Controller her.
-.DESCRIPTION
-    Diese Methode sendet einen Request an den angegebenen Harman Kardon AVR Controller.
-.EXAMPLE
-    Invoke-HKAVRCommand -HostName 172.16.15.123 -Port 10025 -Command "power-on" -Zone "Main Zone"
-.EXAMPLE
-    Invoke-HKAVRCommand -HostName 172.16.15.123 -Port 10025 -Command "power-off" -Zone "Main Zone"
-.EXAMPLE
-    Invoke-HKAVRCommand -HostName 172.16.15.123 -Port 10025 -Command "source-selection" -Zone "Main Zone" -Parameter "AUX"
-.NOTES
-    Getestet mit einem Harman Kardon AVR Controller 171S
-#>
-function Invoke-HKAVRCommand
+﻿function Invoke-HKAVRCommand
 {
     [CmdletBinding()]
     [Alias()]
@@ -70,7 +56,7 @@ function Invoke-HKAVRCommand
             $TcpClient = [System.Net.Sockets.TcpClient]::new($HostName, $Port)
             $TcpClient.ReceiveTimeout = 100
 
-            [Byte[]] $data = [System.Text.Encoding]::ASCII.GetBytes($Request) 
+            [Byte[]] $data = [System.Text.Encoding]::ASCII.GetBytes($Request)
             [System.Net.Sockets.NetworkStream] $NetworkStream = $TcpClient.GetStream()
             $NetworkStream.Write($data, 0, $data.Length)
 
@@ -83,6 +69,6 @@ function Invoke-HKAVRCommand
         }
     }
     End
-    {        
+    {
     }
 }
