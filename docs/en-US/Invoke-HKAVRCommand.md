@@ -1,4 +1,4 @@
-﻿---
+---
 external help file: HarmanKardon.AVR.Commands-help.xml
 Module Name: HarmanKardon.AVR.Commands
 online version:
