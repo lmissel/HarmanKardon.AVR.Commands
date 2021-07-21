@@ -10,7 +10,7 @@ The module requires .NET and PowerShell. The following versions are supported:
 |Product|Version|
 |---|---|
 |.NET Framework|2.0, 3.0, 3.5, 4.0, 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2, 4.7, 4.7.1, 4.7.2, 4.8|
-|PowerShell|2.0 or higher|
+|PowerShell|3.0 or higher|
 
 ## Installation
 To install and run this module, copy the folder with the name `HarmanKardon.AVR.Commands` to one of the appropriate PowerShell paths, and use the command `Import-Module -Name HarmanKardon.AVR.Commands`.
